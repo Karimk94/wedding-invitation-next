@@ -1,0 +1,34 @@
+{
+  "001": {
+    "id": "001",
+    "name": "Karim & Hala",
+    "maxGuests": 2,
+    "attendingCount": 2,
+    "isCouple": true,
+    "attendance": "pending"
+  },
+  "002": {
+    "id": "002",
+    "name": "Toufic Ayoubi Family",
+    "maxGuests": 4,
+    "attendingCount": 0,
+    "isCouple": false,
+    "attendance": "pending"
+  },
+  "003": {
+    "id": "003",
+    "name": "Tony & Justine Nakhoul",
+    "maxGuests": 2,
+    "attendingCount": 0,
+    "isCouple": true,
+    "attendance": "pending"
+  },
+  "004": {
+    "id": "004",
+    "name": "Amer Sidawi",
+    "maxGuests": 1,
+    "attendingCount": 1,
+    "isCouple": false,
+    "attendance": "pending"
+  }
+}
