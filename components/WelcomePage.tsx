@@ -1,13 +1,5 @@
-import React from "react";
 import { Heart, Users } from "lucide-react";
-
-interface Guest {
-  id: string;
-  name: string;
-  maxGuests: number;
-  isCouple: boolean;
-  attendingCount?: number;
-}
+import { Guest } from "@/types";
 
 interface WelcomePageProps {
   guest: Guest;
@@ -50,8 +42,6 @@ const WelcomePage: React.FC<WelcomePageProps> = ({
         >
           عرض دعوة الزفاف
         </button>
-
-        <p className="text-xs text-gray-500 mt-4">رمز الدعوة: {guest.id}</p>
       </div>
     </div>
   );

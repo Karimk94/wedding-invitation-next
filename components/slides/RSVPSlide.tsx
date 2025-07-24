@@ -1,6 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Users, Check, X } from "lucide-react";
-import { Guest } from "../../data/guests";
+import { Guest } from "@/types";
 
 interface RSVPSlideProps {
   guest: Guest;
@@ -22,6 +22,7 @@ const RSVPSlide: React.FC<RSVPSlideProps> = ({ guest }) => {
       body: JSON.stringify({
         guestId: guest.id,
         guestCount: newAttendingCount,
+        attendance: attendance,
       }),
     });
 
@@ -35,10 +36,8 @@ const RSVPSlide: React.FC<RSVPSlideProps> = ({ guest }) => {
           <div className="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-6">
             <Check className="w-8 h-8 text-green-600" />
           </div>
-
           <h2 className="font-serif text-3xl text-gray-800 mb-4">شكرًا لك!</h2>
           <div className="w-16 h-1 bg-rose-400 mx-auto mb-6"></div>
-
           <p className="text-gray-600 mb-6">
             تم استلام ردك.{" "}
             {attendance === "yes"
@@ -46,7 +45,6 @@ const RSVPSlide: React.FC<RSVPSlideProps> = ({ guest }) => {
               : "نأسف لعدم تمكنك من الحضور"}
             !
           </p>
-
           {attendance === "yes" && (
             <div className="bg-rose-50 rounded-2xl p-6">
               <p className="text-gray-700">
@@ -57,7 +55,6 @@ const RSVPSlide: React.FC<RSVPSlideProps> = ({ guest }) => {
               </p>
             </div>
           )}
-
           <p className="text-xs text-gray-500 mt-6">
             يمكنك تغيير ردك عن طريق تحديث الصفحة وإعادة الإرسال
           </p>
@@ -70,14 +67,11 @@ const RSVPSlide: React.FC<RSVPSlideProps> = ({ guest }) => {
     <div className="max-w-md w-full text-center animate-fade-in-up">
       <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-2xl">
         <Users className="w-16 h-16 mx-auto text-rose-500 mb-6" />
-
         <h2 className="font-serif text-3xl text-gray-800 mb-4">تأكيد الحضور</h2>
         <div className="w-16 h-1 bg-rose-400 mx-auto mb-6"></div>
-
         <p className="text-gray-600 mb-8">
           <span className="font-semibold">{guest.name}</span>، هل ستنضم إلينا؟
         </p>
-
         <div className="space-y-6">
           <div className="space-y-3">
             <button
@@ -93,7 +87,6 @@ const RSVPSlide: React.FC<RSVPSlideProps> = ({ guest }) => {
                 <span className="font-medium">نعم، سأحضر!</span>
               </div>
             </button>
-
             <button
               onClick={() => setAttendance("no")}
               className={`w-full p-4 rounded-2xl border-2 transition-all ${
@@ -108,7 +101,6 @@ const RSVPSlide: React.FC<RSVPSlideProps> = ({ guest }) => {
               </div>
             </button>
           </div>
-
           {attendance === "yes" && (
             <div className="bg-rose-50 rounded-2xl p-6">
               <label
@@ -137,7 +129,6 @@ const RSVPSlide: React.FC<RSVPSlideProps> = ({ guest }) => {
               </p>
             </div>
           )}
-
           {attendance && (
             <button
               onClick={handleSubmit}

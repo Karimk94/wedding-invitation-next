@@ -1,10 +1,9 @@
-import React from "react";
 import CountdownSlide from "./slides/CountdownSlide";
 import CoupleSlide from "./slides/CoupleSlide";
 import VenueSlide from "./slides/VenueSlide";
 import GiftSlide from "./slides/GiftSlide";
 import RSVPSlide from "./slides/RSVPSlide";
-import { Guest } from "../data/guests";
+import { Guest } from "@/types";
 
 interface InvitationSliderProps {
   guest: Guest;

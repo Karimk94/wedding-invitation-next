@@ -2,16 +2,9 @@
 
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import WelcomePage from "./components/WelcomePage";
-import InvitationSlider from "./components/InvitationSlider";
-
-interface Guest {
-  id: string;
-  name: string;
-  maxGuests: number;
-  isCouple: boolean;
-  attendingCount?: number;
-}
+import WelcomePage from "@/components/WelcomePage";
+import InvitationSlider from "@/components/InvitationSlider";
+import { Guest } from "@/types";
 
 function LoadingSpinner() {
   return (

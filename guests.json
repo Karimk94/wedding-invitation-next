@@ -1,34 +1,42 @@
 {
-  "001": {
-    "id": "001",
-    "name": "Karim & Hala",
+  "1": {
+    "id": "1",
+    "name": "Hala & Karim",
     "maxGuests": 2,
-    "attendingCount": 2,
     "isCouple": true,
-    "attendance": "pending"
-  },
-  "002": {
-    "id": "002",
-    "name": "Toufic Ayoubi Family",
-    "maxGuests": 4,
     "attendingCount": 0,
-    "isCouple": false,
     "attendance": "pending"
   },
-  "003": {
-    "id": "003",
+  "2": {
+    "id": "2",
+    "name": "Salim Ayoubi Family",
+    "maxGuests": 5,
+    "isCouple": false,
+    "attendingCount": 0,
+    "attendance": "pending"
+  },
+  "3": {
+    "id": "3",
+    "name": "Toufic Ayoubi Family",
+    "maxGuests": 5,
+    "isCouple": false,
+    "attendingCount": 0,
+    "attendance": "pending"
+  },
+  "4": {
+    "id": "4",
     "name": "Tony & Justine Nakhoul",
     "maxGuests": 2,
-    "attendingCount": 0,
     "isCouple": true,
+    "attendingCount": 0,
     "attendance": "pending"
   },
-  "004": {
-    "id": "004",
+  "5": {
+    "id": "5",
     "name": "Amer Sidawi",
     "maxGuests": 1,
-    "attendingCount": 1,
     "isCouple": false,
+    "attendingCount": 0,
     "attendance": "pending"
   }
 }
