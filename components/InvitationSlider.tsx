@@ -52,11 +52,7 @@ const InvitationSlider: React.FC<InvitationSliderProps> = ({
             <div key={index} className="flex justify-center">
               {/* Pass guest prop only if the component expects it */}
               {/* WeddingListSlide, IntroCountdownSlide, MainInvitationSlide, CalendarDateSlide, CoupleSlide, VenueSlide and GiftSlide do not need the guest prop */}
-              {index === 7 ? ( // RSVPSlide is at index 7
-                <SlideComponent guest={guest} />
-              ) : (
-                <SlideComponent />
-              )}
+              <SlideComponent guest={guest} />
             </div>
           ))}
         </div>
