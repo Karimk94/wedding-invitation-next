@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Users, Check, X } from "lucide-react";
 import { Guest } from "@/types";
 
@@ -70,7 +70,7 @@ const RSVPSlide: React.FC<RSVPSlideProps> = ({ guest }) => {
         <h2 className="font-serif text-3xl text-gray-800 mb-4">تأكيد الحضور</h2>
         <div className="w-16 h-1 bg-rose-400 mx-auto mb-6"></div>
         <p className="text-gray-600 mb-8">
-          <span className="font-semibold">{guest.name}</span>، هل ستنضم إلينا؟
+          لتأكيد الحضور يرجى التواصل قبل 5/9/2025
         </p>
         <div className="space-y-6">
           <div className="space-y-3">

@@ -1,8 +1,12 @@
-import CountdownSlide from "./slides/CountdownSlide";
+import IntroCountdownSlide from "./slides/IntroCountdownSlide";
+import MainInvitationSlide from "./slides/MainInvitationSlide";
 import CoupleSlide from "./slides/CoupleSlide";
+import CalendarDateSlide from "./slides/CalendarDateSlide";
 import VenueSlide from "./slides/VenueSlide";
+import WeddingListSlide from "./slides/WeddingListSlide";
 import GiftSlide from "./slides/GiftSlide";
 import RSVPSlide from "./slides/RSVPSlide";
+
 import { Guest } from "@/types";
 
 interface InvitationSliderProps {
@@ -15,9 +19,12 @@ const InvitationSlider: React.FC<InvitationSliderProps> = ({
   onBack,
 }) => {
   const slides = [
-    CountdownSlide,
+    IntroCountdownSlide,
+    MainInvitationSlide,
     CoupleSlide,
+    CalendarDateSlide,
     VenueSlide,
+    WeddingListSlide,
     GiftSlide,
     RSVPSlide,
   ];
@@ -39,9 +46,17 @@ const InvitationSlider: React.FC<InvitationSliderProps> = ({
       {/* Slide Content */}
       <div className="p-4 pt-8">
         <div className="space-y-12">
+          {" "}
+          {/* space-y-12 creates vertical spacing between slides */}
           {slides.map((SlideComponent, index) => (
             <div key={index} className="flex justify-center">
-              <SlideComponent guest={guest} />
+              {/* Pass guest prop only if the component expects it */}
+              {/* WeddingListSlide, IntroCountdownSlide, MainInvitationSlide, CalendarDateSlide, CoupleSlide, VenueSlide and GiftSlide do not need the guest prop */}
+              {index === 7 ? ( // RSVPSlide is at index 7
+                <SlideComponent guest={guest} />
+              ) : (
+                <SlideComponent />
+              )}
             </div>
           ))}
         </div>
