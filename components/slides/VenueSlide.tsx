@@ -16,7 +16,15 @@ const VenueSlide: React.FC = () => {
               <h3 className="font-semibold text-gray-800">منزل العريس</h3>
             </div>
             <p className="text-gray-700 mb-1">
-              <span className="font-medium">المكان:</span> [مكان منزل العريس]
+              <span className="font-medium">المكان:</span>
+              <a
+                href="https://maps.app.goo.gl/P5t8ASHrhBHHh3z97?g_st=ipc"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block ms-2 text-rose-500 hover:text-rose-700 transition-colors"
+              >
+                <MapPin className="w-5 h-5" />
+              </a>
             </p>
             <p className="text-gray-600 text-sm">6:00 مساءً</p>
           </div>
@@ -27,17 +35,36 @@ const VenueSlide: React.FC = () => {
               <h3 className="font-semibold text-gray-800">منزل العروس</h3>
             </div>
             <p className="text-gray-700 mb-1">
-              <span className="font-medium">المكان:</span> [مكان منزل العروس]
+              <span className="font-medium">المكان:</span>
+              <a
+                href="https://maps.app.goo.gl/X5jQcGQuMDjHiAVD6"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block ms-2 text-rose-500 hover:text-rose-700 transition-colors"
+              >
+                <MapPin className="w-5 h-5" />
+              </a>
             </p>
             <p className="text-gray-600 text-sm">6:30 مساءً</p>
           </div>
 
           <div className="bg-rose-50 rounded-2xl p-6">
             <div className="flex items-center justify-center mb-3">
-              <MapPin className="w-5 h-5 text-rose-600 ms-2" />
+              <Clock className="w-5 h-5 text-pink-600 ms-2" />
               <h3 className="font-semibold text-gray-800">الحفل</h3>
             </div>
-            <p className="text-gray-700 font-medium mb-1">أنابيا</p>
+            <div className="flex items-center justify-center text-gray-700 mb-1">
+              <span className="font-medium">المكان:</span>
+              <p className="text-gray-700 font-medium mx-1">أنابيا</p>
+              <a
+                href="https://maps.app.goo.gl/SMZfScqhKBYLhvBq6?g_st=iw"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-rose-500 hover:text-rose-700 transition-colors"
+              >
+                <MapPin className="w-5 h-5" />
+              </a>
+            </div>
             <p className="text-gray-600 text-sm">8:00 مساءً</p>
           </div>
         </div>
