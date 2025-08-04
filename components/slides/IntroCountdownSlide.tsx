@@ -36,44 +36,52 @@ const IntroCountdownSlide: React.FC = () => {
 
   return (
     <div className="max-w-md w-full text-center animate-fade-in-up">
-      <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-2xl">
-        <h1 className="font-serif text-3xl text-gray-800 mb-2">
+      <div className="bg-theme-beige/90 backdrop-blur-sm rounded-3xl p-8 shadow-2xl">
+        <h1 className="font-serif text-3xl text-theme-dark-green mb-2">
           We are getting MARRIED
         </h1>
-        <p className="text-xl font-bold text-rose-600 mb-6">
+        <p className="text-xl font-bold text-theme-secondary mb-6">
           On 27 September 2025
         </p>
 
-        <Heart className="w-16 h-16 mx-auto text-rose-500 mb-6 animate-pulse" />
+        <Heart className="w-16 h-16 mx-auto text-theme-secondary mb-6 animate-pulse" />
 
-        <div className="bg-rose-50 rounded-2xl p-6">
-          <p className="text-sm text-gray-600 mb-4 uppercase tracking-wide">
+        <div className="bg-theme-beige rounded-2xl p-6">
+          <p className="text-sm text-theme-dark-green mb-4 uppercase tracking-wide">
             Countdown
           </p>
           <div className="grid grid-cols-4 gap-4">
             <div className="text-center">
-              <div className="text-2xl font-bold text-rose-600">
+              <div className="text-2xl font-bold text-theme-primary">
                 {timeLeft.days}
               </div>
-              <div className="text-xs text-gray-600 uppercase">Days</div>
+              <div className="text-xs text-theme-dark-green uppercase">
+                Days
+              </div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-rose-600">
+              <div className="text-2xl font-bold text-theme-primary">
                 {timeLeft.hours}
               </div>
-              <div className="text-xs text-gray-600 uppercase">Hours</div>
+              <div className="text-xs text-theme-dark-green uppercase">
+                Hours
+              </div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-rose-600">
+              <div className="text-2xl font-bold text-theme-primary">
                 {timeLeft.minutes}
               </div>
-              <div className="text-xs text-gray-600 uppercase">Minutes</div>
+              <div className="text-xs text-theme-dark-green uppercase">
+                Minutes
+              </div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-rose-600">
+              <div className="text-2xl font-bold text-theme-primary">
                 {timeLeft.seconds}
               </div>
-              <div className="text-xs text-gray-600 uppercase">Seconds</div>
+              <div className="text-xs text-theme-dark-green uppercase">
+                Seconds
+              </div>
             </div>
           </div>
         </div>

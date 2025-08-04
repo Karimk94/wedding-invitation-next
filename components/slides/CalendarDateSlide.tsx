@@ -31,8 +31,8 @@ const CalendarDateSlide: React.FC = () => {
         key={i}
         className={`relative flex items-center justify-center p-2 rounded-lg font-medium ${
           isWeddingDay
-            ? "bg-rose-500 text-white shadow-lg transform scale-105 transition-all duration-200"
-            : "text-gray-700 hover:bg-rose-50 hover:text-rose-600 transition-colors"
+            ? "bg-theme-secondary text-white shadow-lg transform scale-105 transition-all duration-200"
+            : "text-theme-dark-green hover:bg-theme-beige hover:text-theme-primary transition-colors"
         }`}
       >
         {isWeddingDay && (
@@ -61,18 +61,20 @@ const CalendarDateSlide: React.FC = () => {
 
   return (
     <div className="max-w-md w-full text-center animate-fade-in-up">
-      <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-2xl">
-        <Calendar className="w-16 h-16 mx-auto text-rose-500 mb-6" />
-        <h2 className="font-serif text-3xl text-gray-800 mb-4">تاريخ الزفاف</h2>
-        <div className="w-16 h-1 bg-rose-400 mx-auto mb-6"></div>
+      <div className="bg-theme-beige/90 backdrop-blur-sm rounded-3xl p-8 shadow-2xl">
+        <Calendar className="w-16 h-16 mx-auto text-theme-secondary mb-6" />
+        <h2 className="font-serif text-3xl text-theme-dark-green mb-4">
+          تاريخ الزفاف
+        </h2>
+        <div className="w-16 h-1 bg-theme-accent mx-auto mb-6"></div>
 
-        <div className="bg-rose-50 rounded-2xl p-6">
-          <h3 className="text-xl font-bold text-rose-600 mb-4">
+        <div className="bg-theme-beige rounded-2xl p-6">
+          <h3 className="text-xl font-bold text-theme-primary mb-4">
             {monthNames[month]} {year}
           </h3>
           <div className="grid grid-cols-7 gap-2 text-sm mb-4">
             {dayNames.map((day) => (
-              <div key={day} className="font-semibold text-gray-600">
+              <div key={day} className="font-semibold text-theme-dark-green">
                 {day}
               </div>
             ))}

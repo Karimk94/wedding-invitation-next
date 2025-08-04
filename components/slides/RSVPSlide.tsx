@@ -32,13 +32,15 @@ const RSVPSlide: React.FC<RSVPSlideProps> = ({ guest }) => {
   if (isSubmitted) {
     return (
       <div className="max-w-md w-full text-center animate-fade-in-up">
-        <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-2xl">
+        <div className="bg-theme-beige/90 backdrop-blur-sm rounded-3xl p-8 shadow-2xl">
           <div className="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-6">
             <Check className="w-8 h-8 text-green-600" />
           </div>
-          <h2 className="font-serif text-3xl text-gray-800 mb-4">شكرًا لك!</h2>
-          <div className="w-16 h-1 bg-rose-400 mx-auto mb-6"></div>
-          <p className="text-gray-600 mb-6">
+          <h2 className="font-serif text-3xl text-theme-dark-green mb-4">
+            شكرًا لك!
+          </h2>
+          <div className="w-16 h-1 bg-theme-accent mx-auto mb-6"></div>
+          <p className="text-theme-dark-green mb-6">
             تم استلام ردك.{" "}
             {attendance === "yes"
               ? "نتطلع للاحتفال معكم"
@@ -46,11 +48,11 @@ const RSVPSlide: React.FC<RSVPSlideProps> = ({ guest }) => {
             !
           </p>
           {attendance === "yes" && (
-            <div className="bg-rose-50 rounded-2xl p-6">
-              <p className="text-gray-700">
+            <div className="bg-theme-beige rounded-2xl p-6">
+              <p className="text-theme-dark-green">
                 <span className="font-semibold">{guest.name}</span>
               </p>
-              <p className="text-gray-600 text-sm">
+              <p className="text-sm text-theme-dark-green">
                 {guestCount} {guestCount > 1 ? "ضيوف" : "ضيف"} سيحضرون
               </p>
             </div>
@@ -65,11 +67,13 @@ const RSVPSlide: React.FC<RSVPSlideProps> = ({ guest }) => {
 
   return (
     <div className="max-w-md w-full text-center animate-fade-in-up">
-      <div className="bg-white/90 backdrop-blur-sm rounded-3xl p-8 shadow-2xl">
-        <Users className="w-16 h-16 mx-auto text-rose-500 mb-6" />
-        <h2 className="font-serif text-3xl text-gray-800 mb-4">تأكيد الحضور</h2>
-        <div className="w-16 h-1 bg-rose-400 mx-auto mb-6"></div>
-        <p className="text-gray-600 mb-8">
+      <div className="bg-theme-beige/90 backdrop-blur-sm rounded-3xl p-8 shadow-2xl">
+        <Users className="w-16 h-16 mx-auto text-theme-secondary mb-6" />
+        <h2 className="font-serif text-3xl text-theme-dark-green mb-4">
+          تأكيد الحضور
+        </h2>
+        <div className="w-16 h-1 bg-theme-accent mx-auto mb-6"></div>
+        <p className="text-theme-dark-green mb-8">
           لتأكيد الحضور يرجى التواصل قبل 5/9/2025
         </p>
         <div className="space-y-6">
@@ -78,8 +82,8 @@ const RSVPSlide: React.FC<RSVPSlideProps> = ({ guest }) => {
               onClick={() => setAttendance("yes")}
               className={`w-full p-4 rounded-2xl border-2 transition-all ${
                 attendance === "yes"
-                  ? "border-green-500 bg-green-50 text-green-700"
-                  : "border-gray-200 hover:border-green-300"
+                  ? "border-theme-primary bg-theme-primary/20 text-theme-primary"
+                  : "border-gray-200 hover:border-theme-primary/50 text-theme-dark-green"
               }`}
             >
               <div className="flex items-center justify-center">
@@ -92,7 +96,7 @@ const RSVPSlide: React.FC<RSVPSlideProps> = ({ guest }) => {
               className={`w-full p-4 rounded-2xl border-2 transition-all ${
                 attendance === "no"
                   ? "border-red-500 bg-red-50 text-red-700"
-                  : "border-gray-200 hover:border-red-300"
+                  : "border-gray-200 hover:border-red-300 text-theme-dark-green"
               }`}
             >
               <div className="flex items-center justify-center">
@@ -102,10 +106,10 @@ const RSVPSlide: React.FC<RSVPSlideProps> = ({ guest }) => {
             </button>
           </div>
           {attendance === "yes" && (
-            <div className="bg-rose-50 rounded-2xl p-6">
+            <div className="bg-theme-beige rounded-2xl p-6">
               <label
                 htmlFor="guest-count"
-                className="block text-sm font-medium text-gray-700 mb-3"
+                className="block text-sm font-medium text-theme-dark-green mb-3"
               >
                 عدد الضيوف الحاضرين
               </label>
@@ -132,7 +136,7 @@ const RSVPSlide: React.FC<RSVPSlideProps> = ({ guest }) => {
           {attendance && (
             <button
               onClick={handleSubmit}
-              className="w-full bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-medium py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
+              className="w-full bg-theme-primary hover:bg-theme-dark-green text-white font-medium py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
             >
               إرسال الرد
             </button>

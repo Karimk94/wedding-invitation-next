@@ -8,8 +8,8 @@ import { Guest } from "@/types";
 
 function LoadingSpinner() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-100 via-pink-50 to-rose-200 flex items-center justify-center">
-      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-rose-500"></div>
+    <div className="min-h-screen bg-theme-beige flex items-center justify-center">
+      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-theme-primary"></div>
     </div>
   );
 }
@@ -65,13 +65,15 @@ function GuestPortal() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-rose-100 via-pink-50 to-rose-200 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-theme-beige flex items-center justify-center p-4">
         <div className="max-w-md w-full bg-white rounded-2xl shadow-2xl p-8 text-center">
           <div className="w-16 h-16 mx-auto bg-red-100 rounded-full flex items-center justify-center mb-6">
             <span className="text-2xl">❌</span>
           </div>
-          <h1 className="font-serif text-2xl text-gray-800 mb-4">عفواً!</h1>
-          <p className="text-gray-600 mb-6">{error}</p>
+          <h1 className="font-serif text-2xl text-theme-dark-green mb-4">
+            عفواً!
+          </h1>
+          <p className="text-theme-dark-green mb-6">{error}</p>
           <p className="text-sm text-gray-500">
             يرجى الاتصال بـ ديالا ومحمد إذا كنت بحاجة إلى مساعدة.
           </p>

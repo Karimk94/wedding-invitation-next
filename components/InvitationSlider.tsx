@@ -30,13 +30,13 @@ const InvitationSlider: React.FC<InvitationSliderProps> = ({
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-100 via-pink-50 to-rose-200">
+    <div className="min-h-screen bg-theme-beige">
       {/* Navigation Header */}
-      <div className="sticky top-0 z-20 p-4 bg-gradient-to-br from-rose-100 via-pink-50 to-rose-200/80 backdrop-blur-sm">
+      <div className="sticky top-0 z-20 p-4 bg-theme-beige/80 backdrop-blur-sm">
         <div className="flex items-center justify-between">
           <button
             onClick={onBack}
-            className="bg-white/80 backdrop-blur-sm text-gray-700 px-4 py-2 rounded-full text-sm hover:bg-white transition-colors"
+            className="bg-white/80 backdrop-blur-sm text-theme-dark-green px-4 py-2 rounded-full text-sm hover:bg-white transition-colors"
           >
             → رجوع
           </button>
