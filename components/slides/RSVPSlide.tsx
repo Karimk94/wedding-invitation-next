@@ -76,6 +76,7 @@ const RSVPSlide: React.FC<RSVPSlideProps> = ({ guest }) => {
         <p className="text-theme-dark-green mb-8">
           لتأكيد الحضور يرجى التواصل قبل 5/9/2025
         </p>
+        <p className="text-theme-dark-green mb-8">نوما هنيئا لأطفالكم</p>
         <div className="space-y-6">
           <div className="space-y-3">
             <button

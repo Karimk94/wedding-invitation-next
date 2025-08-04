@@ -1,4 +1,5 @@
-import { Gift, CreditCard, Heart } from "lucide-react";
+import React from "react";
+import { Gift, CreditCard } from "lucide-react";
 
 const GiftSlide: React.FC = () => {
   return (
@@ -12,22 +13,27 @@ const GiftSlide: React.FC = () => {
         <div className="w-16 h-1 bg-theme-accent mx-auto mb-6"></div>
 
         <p className="text-theme-dark-green mb-8 leading-relaxed">
-          حضوركم هو أعظم هدية، ولكن إذا رغبتم في تكريمنا بهدية، فسنكون ممتنين
-          لمساهمتكم في مستقبلنا معًا.
+          حضوركم هو أعظم هدية
         </p>
 
         <div className="space-y-4">
-          <div className="bg-theme-beige rounded-2xl p-6 text-left">
+          <div className="bg-theme-beige rounded-2xl p-6 text-center">
             <div className="flex items-center justify-center mb-4">
-              <CreditCard className="w-6 h-6 text-theme-primary me-2" />
               <h3 className="font-semibold text-theme-dark-green">
-                تحويل بنكي
+                Western Union
               </h3>
             </div>
             <div className="text-sm text-theme-dark-green space-y-1">
-              <p>
-                <span className="font-medium">OMT :</span> @DialaMohammadWedding
-              </p>
+              <p>Mohammad Ayoub</p>
+              <p>Diala Ayoubi</p>
+            </div>
+          </div>
+          <div className="bg-theme-beige rounded-2xl p-6 text-center">
+            <div className="flex items-center justify-center mb-4">
+              <h3 className="font-semibold text-theme-dark-green">Whish</h3>
+            </div>
+            <div className="text-sm text-theme-dark-green space-y-1">
+              <p>03130850</p>
             </div>
           </div>
         </div>

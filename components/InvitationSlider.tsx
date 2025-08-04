@@ -3,7 +3,6 @@ import MainInvitationSlide from "./slides/MainInvitationSlide";
 import CoupleSlide from "./slides/CoupleSlide";
 import CalendarDateSlide from "./slides/CalendarDateSlide";
 import VenueSlide from "./slides/VenueSlide";
-import WeddingListSlide from "./slides/WeddingListSlide";
 import GiftSlide from "./slides/GiftSlide";
 import RSVPSlide from "./slides/RSVPSlide";
 
@@ -24,7 +23,6 @@ const InvitationSlider: React.FC<InvitationSliderProps> = ({
     CoupleSlide,
     CalendarDateSlide,
     VenueSlide,
-    WeddingListSlide,
     GiftSlide,
     RSVPSlide,
   ];
@@ -51,7 +49,6 @@ const InvitationSlider: React.FC<InvitationSliderProps> = ({
           {slides.map((SlideComponent, index) => (
             <div key={index} className="flex justify-center">
               {/* Pass guest prop only if the component expects it */}
-              {/* WeddingListSlide, IntroCountdownSlide, MainInvitationSlide, CalendarDateSlide, CoupleSlide, VenueSlide and GiftSlide do not need the guest prop */}
               <SlideComponent guest={guest} />
             </div>
           ))}

@@ -30,7 +30,8 @@ const WelcomePage: React.FC<WelcomePageProps> = ({
             className="font-serif text-3xl text-white mb-2"
             style={{ textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)" }}
           >
-            أنتم مدعوون!
+            You are Invited
+            {/* أنتم مدعوون! */}
           </h1>
           {/* The divider now uses the new accent color from the theme. */}
           <div className="w-16 h-1 bg-theme-accent mx-auto"></div>
