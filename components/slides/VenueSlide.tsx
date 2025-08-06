@@ -76,7 +76,6 @@ const VenueSlide: React.FC = () => {
         </div>
 
         <p className="text-xs text-gray-500 mt-6">
-          يرجى الالتزام بملابس الكوكتيل
         </p>
       </div>
     </div>
