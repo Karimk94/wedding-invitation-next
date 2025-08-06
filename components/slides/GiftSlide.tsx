@@ -24,7 +24,7 @@ const GiftSlide: React.FC = () => {
               </h3>
             </div>
             <div className="text-sm text-theme-dark-green space-y-1">
-              <p>Mohammad Ayoub</p>
+              <p>Mohammad Ayoubi</p>
               <p>Diala Ayoubi</p>
             </div>
           </div>
