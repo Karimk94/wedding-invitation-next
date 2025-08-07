@@ -37,21 +37,14 @@ export default function AdminPage() {
 
   useEffect(() => {
     if (guestList.length > 0) {
-      const maxId = Math.max(
-        ...guestList
-          .map((guest) => parseInt(guest.id, 10))
-          .filter((id) => !isNaN(id))
-      );
+      const maxId = Math.max(...guestList.map(guest => parseInt(guest.id, 10)).filter(id => !isNaN(id)));
       if (isFinite(maxId)) {
-        setNewGuest((prev) => ({
-          ...prev,
-          id: (maxId + 1).toString().padStart(3, "0"),
-        }));
+        setNewGuest(prev => ({ ...prev, id: (maxId + 1).toString() }));
       } else {
-        setNewGuest((prev) => ({ ...prev, id: "001" }));
+        setNewGuest(prev => ({ ...prev, id: "1" }));
       }
     } else {
-      setNewGuest((prev) => ({ ...prev, id: "001" }));
+      setNewGuest(prev => ({ ...prev, id: "1" }));
     }
   }, [guestList]);
 
@@ -65,10 +58,10 @@ export default function AdminPage() {
       newGuest.name.toLowerCase().includes(" and ");
 
     const guestToAdd = {
-      ...newGuest,
-      isCouple,
-      attendingCount: 0,
-      attendance: "pending",
+        ...newGuest,
+        isCouple,
+        attendingCount: 0,
+        attendance: "pending",
     };
 
     const response = await fetch("/api/guests", {
@@ -76,7 +69,7 @@ export default function AdminPage() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         guestId: guestToAdd.id,
-        ...guestToAdd,
+        ...guestToAdd
       }),
     });
 
@@ -104,14 +97,9 @@ export default function AdminPage() {
     }
   };
 
+
   const handleExport = () => {
-    const headers = [
-      "Guest Code",
-      "Guest Name",
-      "Max Guests",
-      "Status",
-      "Guest Count",
-    ];
+    const headers = ["Guest Code", "Guest Name", "Max Guests", "Status", "Guest Count"];
     const dataToExport = guestList.map((guest) => ({
       "Guest Code": guest.id,
       "Guest Name": guest.name,
@@ -206,46 +194,37 @@ export default function AdminPage() {
     <div className="min-h-screen bg-gray-100 p-8" dir="ltr">
       <div className="max-w-4xl mx-auto">
         <div className="mb-8 bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-800">
-            Add New Guest
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <input
-              type="text"
-              placeholder="Guest ID"
-              value={newGuest.id}
-              disabled
-              className="p-2 border rounded bg-gray-200 text-gray-800"
-            />
-            <input
-              type="text"
-              placeholder="Guest Name"
-              value={newGuest.name}
-              onChange={(e) =>
-                setNewGuest({ ...newGuest, name: e.target.value })
-              }
-              className="p-2 border rounded text-gray-800"
-            />
-            <input
-              type="number"
-              placeholder="Max Guests"
-              min="1"
-              value={newGuest.maxGuests}
-              onChange={(e) =>
-                setNewGuest({
-                  ...newGuest,
-                  maxGuests: parseInt(e.target.value, 10),
-                })
-              }
-              className="p-2 border rounded text-gray-800"
-            />
-          </div>
-          <button
-            onClick={handleAddGuest}
-            className="mt-4 bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded"
-          >
-            Add Guest
-          </button>
+            <h2 className="text-2xl font-semibold mb-4 text-gray-800">Add New Guest</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <input
+                    type="text"
+                    placeholder="Guest ID"
+                    value={newGuest.id}
+                    disabled
+                    className="p-2 border rounded bg-gray-200 text-gray-800"
+                />
+                <input
+                    type="text"
+                    placeholder="Guest Name"
+                    value={newGuest.name}
+                    onChange={(e) => setNewGuest({ ...newGuest, name: e.target.value })}
+                    className="p-2 border rounded text-gray-800"
+                />
+                <input
+                    type="number"
+                    placeholder="Max Guests"
+                    min="1"
+                    value={newGuest.maxGuests}
+                    onChange={(e) => setNewGuest({ ...newGuest, maxGuests: parseInt(e.target.value, 10) })}
+                    className="p-2 border rounded text-gray-800"
+                />
+            </div>
+            <button
+                onClick={handleAddGuest}
+                className="mt-4 bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded"
+            >
+                Add Guest
+            </button>
         </div>
         <div className="flex justify-end mb-4 space-x-2">
           <label className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">
@@ -304,7 +283,7 @@ export default function AdminPage() {
                     <td className="py-3 px-6 text-left whitespace-nowrap">
                       <span className="font-medium">{guest.name}</span>
                     </td>
-                    <td className="py-3 px-6 text-left">
+                     <td className="py-3 px-6 text-left">
                       <span className="font-medium">{guest.maxGuests}</span>
                     </td>
                     <td className="py-3 px-6 text-left">
@@ -333,12 +312,12 @@ export default function AdminPage() {
                       </span>
                     </td>
                     <td className="py-3 px-6 text-center">
-                      <button
+                        <button
                         onClick={() => handleRemoveGuest(guest.id)}
                         className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded"
-                      >
+                        >
                         Remove
-                      </button>
+                        </button>
                     </td>
                   </tr>
                 ))}
