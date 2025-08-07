@@ -8,6 +8,7 @@ export default function AdminPage() {
   const [guestList, setGuestList] = useState<Guest[]>([]);
   const [totalAttending, setTotalAttending] = useState(0);
   const [isClient, setIsClient] = useState(false);
+  const [newGuest, setNewGuest] = useState({ id: "", name: "", maxGuests: 1 });
 
   const fetchData = async () => {
     try {
@@ -34,11 +35,87 @@ export default function AdminPage() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    if (guestList.length > 0) {
+      const maxId = Math.max(
+        ...guestList
+          .map((guest) => parseInt(guest.id, 10))
+          .filter((id) => !isNaN(id))
+      );
+      if (isFinite(maxId)) {
+        setNewGuest((prev) => ({
+          ...prev,
+          id: (maxId + 1).toString().padStart(3, "0"),
+        }));
+      } else {
+        setNewGuest((prev) => ({ ...prev, id: "001" }));
+      }
+    } else {
+      setNewGuest((prev) => ({ ...prev, id: "001" }));
+    }
+  }, [guestList]);
+
+  const handleAddGuest = async () => {
+    if (!newGuest.id || !newGuest.name || newGuest.maxGuests < 1) {
+      alert("Please fill all fields for the new guest.");
+      return;
+    }
+    const isCouple =
+      newGuest.name.toLowerCase().includes("&") ||
+      newGuest.name.toLowerCase().includes(" and ");
+
+    const guestToAdd = {
+      ...newGuest,
+      isCouple,
+      attendingCount: 0,
+      attendance: "pending",
+    };
+
+    const response = await fetch("/api/guests", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        guestId: guestToAdd.id,
+        ...guestToAdd,
+      }),
+    });
+
+    if (response.ok) {
+      alert("Guest added successfully!");
+      setNewGuest({ id: "", name: "", maxGuests: 1 });
+      fetchData();
+    } else {
+      alert("Failed to add guest.");
+    }
+  };
+
+  const handleRemoveGuest = async (guestId: string) => {
+    if (confirm("Are you sure you want to remove this guest?")) {
+      const response = await fetch(`/api/guests/${guestId}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        alert("Guest removed successfully!");
+        fetchData();
+      } else {
+        alert("Failed to remove guest.");
+      }
+    }
+  };
+
   const handleExport = () => {
-    const headers = ["Guest Code", "Guest Name", "Status", "Guest Count"];
+    const headers = [
+      "Guest Code",
+      "Guest Name",
+      "Max Guests",
+      "Status",
+      "Guest Count",
+    ];
     const dataToExport = guestList.map((guest) => ({
       "Guest Code": guest.id,
       "Guest Name": guest.name,
+      "Max Guests": guest.maxGuests,
       Status: guest.attendance || "pending",
       "Guest Count": guest.attendingCount || 0,
     }));
@@ -61,7 +138,7 @@ export default function AdminPage() {
         const sheetName = workbook.SheetNames[0];
         const worksheet = workbook.Sheets[sheetName];
         const json = utils.sheet_to_json(worksheet, {
-          header: ["id", "name", "maxGuests"],
+          header: ["id", "name", "maxGuests", "attendance", "attendingCount"],
         });
 
         if (json.length > 0 && (json[0] as any).id === "id") {
@@ -88,8 +165,8 @@ export default function AdminPage() {
             name: String(row.name),
             maxGuests: Number(row.maxGuests),
             isCouple: isCouple,
-            attendingCount: 0,
-            attendance: "pending",
+            attendingCount: Number(row.attendingCount) || 0,
+            attendance: row.attendance || "pending",
           };
         });
 
@@ -128,6 +205,48 @@ export default function AdminPage() {
   return (
     <div className="min-h-screen bg-gray-100 p-8" dir="ltr">
       <div className="max-w-4xl mx-auto">
+        <div className="mb-8 bg-white p-6 rounded-lg shadow-md">
+          <h2 className="text-2xl font-semibold mb-4 text-gray-800">
+            Add New Guest
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <input
+              type="text"
+              placeholder="Guest ID"
+              value={newGuest.id}
+              disabled
+              className="p-2 border rounded bg-gray-200 text-gray-800"
+            />
+            <input
+              type="text"
+              placeholder="Guest Name"
+              value={newGuest.name}
+              onChange={(e) =>
+                setNewGuest({ ...newGuest, name: e.target.value })
+              }
+              className="p-2 border rounded text-gray-800"
+            />
+            <input
+              type="number"
+              placeholder="Max Guests"
+              min="1"
+              value={newGuest.maxGuests}
+              onChange={(e) =>
+                setNewGuest({
+                  ...newGuest,
+                  maxGuests: parseInt(e.target.value, 10),
+                })
+              }
+              className="p-2 border rounded text-gray-800"
+            />
+          </div>
+          <button
+            onClick={handleAddGuest}
+            className="mt-4 bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Add Guest
+          </button>
+        </div>
         <div className="flex justify-end mb-4 space-x-2">
           <label className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">
             <span>Import from Excel</span>
@@ -165,8 +284,10 @@ export default function AdminPage() {
                 <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                   <th className="py-3 px-6 text-left">Guest Code</th>
                   <th className="py-3 px-6 text-left">Guest Name</th>
+                  <th className="py-3 px-6 text-left">Max Guests</th>
                   <th className="py-3 px-6 text-left">Status</th>
                   <th className="py-3 px-6 text-center">Guest Count</th>
+                  <th className="py-3 px-6 text-center">Actions</th>
                 </tr>
               </thead>
               <tbody className="text-gray-600 text-sm font-light">
@@ -182,6 +303,9 @@ export default function AdminPage() {
                     </td>
                     <td className="py-3 px-6 text-left whitespace-nowrap">
                       <span className="font-medium">{guest.name}</span>
+                    </td>
+                    <td className="py-3 px-6 text-left">
+                      <span className="font-medium">{guest.maxGuests}</span>
                     </td>
                     <td className="py-3 px-6 text-left">
                       {guest.attendance === "yes" && (
@@ -207,6 +331,14 @@ export default function AdminPage() {
                           ? guest.attendingCount
                           : "-"}
                       </span>
+                    </td>
+                    <td className="py-3 px-6 text-center">
+                      <button
+                        onClick={() => handleRemoveGuest(guest.id)}
+                        className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded"
+                      >
+                        Remove
+                      </button>
                     </td>
                   </tr>
                 ))}

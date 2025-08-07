@@ -28,28 +28,37 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  try {
-    const { guestId, guestCount, attendance } = await request.json();
-
-    const guestKey = `guest:${guestId}`;
-    const guest = (await kv.get(guestKey)) as Guest | null;
-
-    if (guest) {
-      guest.attendingCount = guestCount;
-      guest.attendance = attendance;
-
-      await kv.set(guestKey, guest);
-      return NextResponse.json({ message: "Guest updated successfully" });
-    } else {
-      return NextResponse.json({ message: "Guest not found" }, { status: 404 });
+    try {
+      const body = await request.json();
+      const { guestId } = body;
+      const guestKey = `guest:${guestId}`;
+      const guest = (await kv.get(guestKey)) as Guest | null;
+  
+      if (guest && body.name === undefined) { // It's an update from RSVP
+        guest.attendingCount = body.guestCount;
+        guest.attendance = body.attendance;
+        await kv.set(guestKey, guest);
+        return NextResponse.json({ message: "Guest updated successfully" });
+      } else { // It's a create or full update from admin
+        const newGuestData: Guest = {
+          id: guestId,
+          name: body.name,
+          maxGuests: body.maxGuests,
+          isCouple: body.isCouple,
+          attendingCount: body.attendingCount,
+          attendance: body.attendance
+        };
+        await kv.set(guestKey, newGuestData);
+        const message = guest ? "Guest updated successfully" : "Guest created successfully";
+        return NextResponse.json({ message });
+      }
+    } catch (error) {
+      return NextResponse.json(
+        { message: "Error updating guest data in KV" },
+        { status: 500 }
+      );
     }
-  } catch (error) {
-    return NextResponse.json(
-      { message: "Error updating guest data in KV" },
-      { status: 500 }
-    );
   }
-}
 
 export async function PUT(request: Request) {
   try {
