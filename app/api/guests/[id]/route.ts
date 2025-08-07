@@ -14,22 +14,22 @@ export async function DELETE(
 
     // Re-index remaining guests
     const guestKeys = await kv.keys("guest:*");
-    const guests = (await kv.mget(...guestKeys)) as Guest[];
+    if (guestKeys.length > 0) {
+      const guests = (await kv.mget(...guestKeys)) as Guest[];
+      
+      await kv.del(...guestKeys);
 
-    await kv.del(...guestKeys);
+      const sortedGuests = guests.sort((a, b) => parseInt(a.id, 10) - parseInt(b.id, 10));
 
-    const sortedGuests = guests.sort(
-      (a, b) => parseInt(a.id, 10) - parseInt(b.id, 10)
-    );
-
-    const pipeline = kv.pipeline();
-    sortedGuests.forEach((guest, index) => {
-      const newId = (index + 1).toString().padStart(3, "0");
-      guest.id = newId;
-      pipeline.set(`guest:${newId}`, guest);
-    });
-    await pipeline.exec();
-
+      const pipeline = kv.pipeline();
+      sortedGuests.forEach((guest, index) => {
+          const newId = (index + 1).toString();
+          guest.id = newId;
+          pipeline.set(`guest:${newId}`, guest);
+      });
+      await pipeline.exec();
+    }
+    
     return NextResponse.json({ message: "Guest deleted successfully" });
   } catch (error) {
     return NextResponse.json(
